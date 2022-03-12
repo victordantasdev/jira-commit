@@ -13,6 +13,8 @@ const rl = readline.createInterface({
 });
 
 const main = async () => {
+  const closeMessage = colorize('\nClosing CLI...', 'FgYellow');
+
   async function runShellCommand(command: string) {
     let result: { stdout: string; stderr: string; };
     try {
@@ -25,12 +27,21 @@ const main = async () => {
     return result;
   }
 
-  const hasUnstagedChanges = await runShellCommand('git status').then((res) => res?.stdout.trim().includes('Changes not staged for commit'));
-  if (hasUnstagedChanges) {
+  const gitLog = await runShellCommand('git status').then((res) => res?.stdout.trim());
+  if (gitLog?.includes('Changes not staged for commit')) {
     console.log('Changes not staged for commit:');
     console.log(` use "${colorize('git add <file>...', 'FgGreen')}" to update what will be committed`);
     console.log(` use "${colorize('git restore <file>...', 'FgYellow')}" to discard changes in working directory`);
     console.log(`\nuse "${colorize('git status', 'FgMagenta')}" to get more info!`);
+
+    console.log(closeMessage);
+    return process.exit(0);
+  } if (gitLog?.includes('nothing to commit')) {
+    console.log(
+      colorize('nothing to commit, working tree clean', 'FgYellow', 'None', 'Bright'),
+    );
+
+    console.log(closeMessage);
     return process.exit(0);
   }
 
@@ -38,12 +49,24 @@ const main = async () => {
     'git rev-parse --abbrev-ref HEAD',
   ).then((res) => res?.stdout.trim().replace(/\/(.*)/, ''));
 
+  if (branch === undefined) {
+    console.log(
+      colorize(
+        "Oops.. Git hasn't been initialized in that directory yet!",
+        'FgRed',
+      ),
+    );
+
+    console.log(closeMessage);
+    return process.exit(0);
+  }
+
   console.log(`You're currently working on task ${colorize(branch, 'FgGreen')}`);
 
   rl.question('Type a commit message: ', (msg: string) => {
     const gc = `git commit -m "${branch}: ${msg}"`;
 
-    console.log(`\n${colorize(gc, 'FgMagenta')}\n`);
+    console.log(`\n${colorize(gc, 'FgMagenta', 'None', 'Bright')}\n`);
     rl.question('Do you want to commit this message? [Y/n]: ', (op: string) => {
       if (op.toLowerCase() === 'y' || op === '') {
         shell.exec(gc);
@@ -56,7 +79,7 @@ const main = async () => {
   });
 
   rl.on('close', () => {
-    console.log(colorize('\nClosing CLI...', 'FgYellow'));
+    console.log(closeMessage);
     process.exit(0);
   });
 };
