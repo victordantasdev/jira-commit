@@ -2,8 +2,11 @@
   "name": "softa-autocommit",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "type": "module",
+  "bin": {
+    "softa-autocommit": "./lib/index.js"
+  },
   "scripts": {
     "watch": "tsc -w",
     "build": "tsc -p .",
