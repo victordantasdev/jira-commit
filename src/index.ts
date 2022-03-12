@@ -52,7 +52,7 @@ const main = async () => {
   if (branch === undefined) {
     console.log(
       colorize(
-        "Oops.. Git hasn't been initialized in that directory yet!",
+        "Oops.. Git hasn't been initialized in this directory yet!",
         'FgRed',
       ),
     );
