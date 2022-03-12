@@ -14,7 +14,7 @@
     "plugins": [
         "@typescript-eslint"
     ],
-    "ignorePatterns": ["*.d.ts", "../cli/lib/**"],
+    "ignorePatterns": ["*.d.ts", "lib"],
     "rules": {
         "no-console": 0
     }

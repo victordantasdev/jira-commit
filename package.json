@@ -1,17 +1,17 @@
 {
   "name": "softa-autocommit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "./lib/index.js",
   "bin": {
-    "softa-autocommit": "./lib/index.js"
+    "softa-autocommit": "./lib/bin/cli.js"
   },
   "scripts": {
     "watch": "tsc -w",
     "build": "tsc -p .",
     "prepare": "yarn build",
     "lint": "eslint '**/*.js'",
-    "gc": "tsc -p . && node ./lib/index.js",
+    "gc": "tsc -p . && node ./lib/bin/cli.js",
     "refresh": "rm -rf ./node_modules ./package-lock.json && yarn install"
   },
   "repository": {
