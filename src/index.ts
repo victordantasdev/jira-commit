@@ -28,7 +28,7 @@ const main = async () => {
   const hasUnstagedChanges = await runShellCommand('git status').then((res) => res?.stdout.trim().includes('Changes not staged for commit'));
   if (hasUnstagedChanges) {
     console.log('Changes not staged for commit:');
-    console.log(` use "${colorize('git add <file>...', 'Blink')}" to update what will be committed`);
+    console.log(` use "${colorize('git add <file>...', 'FgGreen')}" to update what will be committed`);
     console.log(` use "${colorize('git restore <file>...', 'FgYellow')}" to discard changes in working directory`);
     console.log(`\nuse "${colorize('git status', 'FgMagenta')}" to get more info!`);
     return process.exit(0);
