@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "",
   "main": "./lib/index.js",
-  "type": "module",
   "bin": {
     "softa-autocommit": "./lib/index.js"
   },
@@ -27,6 +26,7 @@
   },
   "homepage": "https://github.com/victordantasdev/softa-autocommit#readme",
   "dependencies": {
+    "shelljs": "^0.8.5",
     "yargs": "17.3.1"
   },
   "devDependencies": {

@@ -16,5 +16,6 @@
     ],
     "ignorePatterns": ["*.d.ts", "../cli/lib/**"],
     "rules": {
+        "no-console": 0
     }
 }
