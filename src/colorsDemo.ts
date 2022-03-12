@@ -1,0 +1,24 @@
+import colorize from './utils/colorize.js';
+
+console.log(colorize('Bright', 'Bright'));
+console.log(colorize('Dim', 'Dim'));
+console.log(colorize('Underscore', 'Underscore'));
+console.log(colorize('Blink', 'Blink'));
+console.log(colorize('Reverse', 'Reverse'));
+console.log(colorize('Hidden', 'Hidden'));
+console.log(colorize('FgBlack', 'FgBlack'));
+console.log(colorize('FgRed', 'FgRed'));
+console.log(colorize('FgGreen', 'FgGreen'));
+console.log(colorize('FgYellow', 'FgYellow'));
+console.log(colorize('FgBlue', 'FgBlue'));
+console.log(colorize('FgMagenta', 'FgMagenta'));
+console.log(colorize('FgCyan', 'FgCyan'));
+console.log(colorize('FgWhite', 'FgWhite'));
+console.log(colorize('BgBlack', 'BgBlack'));
+console.log(colorize('BgRed', 'BgRed'));
+console.log(colorize('BgGreen', 'BgGreen'));
+console.log(colorize('BgYellow', 'BgYellow'));
+console.log(colorize('BgBlue', 'BgBlue'));
+console.log(colorize('BgMagenta', 'BgMagenta'));
+console.log(colorize('BgCyan', 'BgCyan'));
+console.log(colorize('BgWhite', 'BgWhite'));
