@@ -27,10 +27,13 @@ const main = async () => {
     return result;
   }
 
-  const gitLog = await runShellCommand('git status')
+  const gitStatus = await runShellCommand('git status')
     .then((res) => res?.stdout.trim());
 
-  if (gitLog?.includes('Changes not staged for commit')) {
+  if (
+    gitStatus?.includes('Changes not staged for commit')
+    && !gitStatus?.includes('Changes to be committed')
+  ) {
     console.log('Changes not staged for commit:');
     console.log(` use "${colorize('git add <file>...', 'FgGreen')}"\
  to update what will be committed`);
@@ -43,7 +46,7 @@ const main = async () => {
     return process.exit(0);
   }
 
-  if (gitLog?.includes('nothing to commit')) {
+  if (gitStatus?.includes('nothing to commit')) {
     console.log(
       colorize('nothing to commit, working tree clean', 'FgYellow', 'None', 'Bright'),
     );
